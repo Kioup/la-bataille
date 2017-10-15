@@ -5,21 +5,51 @@
  */
 package upmc.game;
 
+import java.util.*;
 /**
  *
  * @author licence
  */
-public class Carte {
+public class Carte{
     
-    private String color;
-    private String valor; // string car 01  
+    // ########## attributs ##########
     
-    public Carte(String color, String valor){
-        this.color = color;
-        this.valor = valor;
-    }  
+    private String couleur;
+    private int valeur;
     
-    public String toString(){
-        return valor + " " + color;
+    // ########## constructeur ##########
+    
+    public Carte (int valeur, String couleur) {
+        this.valeur = valeur;
+        this.couleur = couleur;
     }
+    
+    // ########## méthode ########## 
+    
+    // methode pour comparer les valeur de carte
+    public Carte compare(Carte carte2){
+        Carte carte = this;
+        Carte carteAdverse = carte2;
+        Carte carteNull = null;
+        if (this.valeur > carte2.valeur) {
+            return carte;
+        }
+        else if (this.valeur < carte2.valeur) {
+            return carteAdverse;
+        }
+        else {
+            return carteNull;
+        }
+    }
+    
+    // méthode pour afficher une carte
+    public String toString(){
+        String carte = this.valeur+" "+this.couleur;
+        return carte;
+    }
+    
+    // ########## accesseurs (optionnel) ##########
+    
+    // ########## mutateur (optionnel) ##########
+    
 }

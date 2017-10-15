@@ -14,58 +14,139 @@
 
 package upmc.game;
 
-import java.awt.Event;
-import java.awt.event.KeyEvent;
 import java.util.Scanner;
+import java.util.*;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.concurrent.TimeUnit;
-
-/**
- *
- * @author Kiril
- */
-public class Bataille {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) throws InterruptedException {
-       
-        //Choix du mode
-        System.out.println("Bonjour, \n Choissisez un mode : \n (1) Jouez contre l'ordinateur \n (2) Mode 2 joueurs");
-        Game game1 = new Game();
-        game1.Mode();
-              
-        //creation joueur
-        System.out.println("Votre nom : ");
-        System.out.flush();
-        Scanner sc_nom_1 = new Scanner(System.in);
-        String nom_joueur_1 = sc_nom_1.nextLine();
-        
-        System.out.println("Nom de l'adversaire : ");
-        System.out.flush();
-        Scanner sc_nom_2 = new Scanner(System.in);  
-        String nom_joueur_2 = sc_nom_2.nextLine();
-        
-        Joueur j1 = new Joueur(0);
-        Joueur j2 = new Joueur(0);
-        
-
-             
-        System.out.println("Création des cartes");
-      //  TimeUnit.SECONDS.sleep(1);
-        //crea un deck
-        Deck deck1 = new Deck();
-        
-        //distribution
-        deck1.Distribution(j1,j2);
-        //deck1.VoirDeck();    
+public class Bataille
+{
+  public static void main(String[] args)
+  { 
+      System.out.println("##################################################################");
+      System.out.println("############ Bienvenu dans le jeu de la bataille ! ###############");
+      System.out.println("##################################################################"+"\n");
+      
+      System.out.println("##### Choisissez un mode de jeu #####");
+      System.out.println("(1) jouer contre l\'ordinateur || (2) Jouer contre un partenaire");
+      Scanner md = new Scanner(System.in);
+      String choix = md.nextLine();
+      
+      Scanner jou = new Scanner(System.in);
+      System.out.println("Joueur 1 - Veuillez entrer votre nom : ");
+      String name = jou.nextLine();
+      String name2;
+      boolean mode2J = false;
+      Joueur j1 = new Joueur(0, name);
+      
+      if (choix.equals("1")) {
+          name2 = "ordinateur";
+          mode2J = false;
+      }
+      
+      else if (choix.equals("2")) {
+          Scanner joi = new Scanner(System.in);
+          System.out.println("Joueur2 - Veuillez entrer votre nom : ");
+          name2 = joi.nextLine();
+          mode2J = true;
+      }
+      else {
+          name2 = null;
+          System.out.println("La réponse entrée n'est pas valide, veuillez réessayer");
+      }
+    
+      Joueur j2 = new Joueur(0, name2);
   
-        //lancement du menu
-        game1.Menu(nom_joueur_1, nom_joueur_2, j1, j2);
-       
-    }
+      
+
+      Paquet tas = new Paquet();
+      tas.melangePaquet();
+      tas.Distribution(j1, j2);
+      // System.out.println(j1.VoirPaquet(j1.getPaquet()));
+      // System.out.println(j2.VoirPaquet(j2.getPaquet()));
+      int z = 0;
+      String menu;
+      
+      while (j1.getPaquet().size() > 0 || j2.getPaquet().size() > 0){
+          
+          // affichage du menu
+          
+            System.out.println("##### "+j1.nom+" Choisissez une action #####");
+            System.out.println("(1) Piocher une carte | (2) Afficher le Score | (3) Quitter");
+            Scanner tl = new Scanner(System.in);
+            menu = tl.nextLine();
+            Carte carteJ1 = null;
+            Carte carteJ2 = null;
+            
+            if (menu.equals("1")){
+                carteJ1 = j1.Pioche(z);
+                System.out.println("Vous avez tirez : ["+carteJ1+"]");
+                
+                // mode 2 joueurs
+                if (mode2J == true && menu.equals("1")) {
+                    System.out.println("##### "+j2.nom+" Choisissez une action #####");
+                    System.out.println("(1) Piocher une carte | (2) Afficher le Score | (3) Quitter");
+                    Scanner tm = new Scanner(System.in);
+                    menu = tm.nextLine();
+                    
+                    if (menu.equals("1")) {
+                        
+                    }
+                    
+                    else if (menu.equals("2")) {
+                        System.out.println("##########################################################");
+                        System.out.println("########## "+j1.nom+" "+j1.score+" ##########");
+                        System.out.println("########## "+j2.nom+" "+j2.score+" ##########");
+                        System.out.println("##########################################################");
+                    }
+                    else if (menu.equals("3")) {
+                        System.out.println("########## Fin de la partie #########");
+                        System.exit(0);
+                    }
+                    else {
+                        System.out.println(" ########## Vous n'avez pas entré le bon numero ##########");
+                        System.out.println("########## Veuillez réessayer ##########");
+                    }
+                }
+                carteJ2 = j2.Pioche(z);
+                System.out.println("Vous avez tirez : ["+carteJ2+"]");
+            
+                if (carteJ1.compare(carteJ2) == carteJ1) {
+                    System.out.println(j1.nom+" remporte la mache");
+                    j1.score++;
+                }
+                else if (carteJ1.compare(carteJ2) == carteJ2) {
+                    System.out.println(j2.nom+" remporte la manche");
+                    j2.score++;
+                }
+                else {
+                    j1.score++;
+                    j2.score++;
+                    System.out.println("Egalité");
+                }
+                j1.getPaquet().remove(z);
+                j2.getPaquet().remove(z);
+                }
+            else if (menu.equals("2")) {
+                System.out.println("##########################################################");
+                System.out.println("########## "+j1.nom+" "+j1.score+" ##########");
+                System.out.println("########## "+j2.nom+" "+j2.score+" ##########");
+                System.out.println("##########################################################");
+            }
+            else if (menu.equals("3")) {
+                System.out.println("########## Fin de la partie #########");
+                System.exit(0);
+            }
+            else {
+                System.out.println(" ########## Vous n'avez pas entré le bon numero ##########");
+                System.out.println("########## Veuillez réessayer ##########");
+            }
+      }
+      System.out.println("########## Fin de la partie #########");
+        System.out.println("##########################################################");
+        System.out.println("########## "+j1.nom+" "+j1.score+" ##########");
+        System.out.println("########## "+j2.nom+" "+j2.score+" ##########");
+        System.out.println("##########################################################");      
+      System.out.println("########## Le gagnant est : #########");
+      System.out.println("########## "+j1.Gagnant(j1, j2)+"#########");
+      
+  }
 }

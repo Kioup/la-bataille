@@ -5,49 +5,69 @@
  */
 package upmc.game;
 
-import java.util.LinkedList;
-import java.util.List;
-
+import java.util.*;
 /**
  *
- * @author Kiril
+ * @author licence
  */
-public class Joueur{
+public class Joueur {
     
-    private int score;
-    private List joueur_deck = new LinkedList();
+            // ########## attributs ##########
     
-    public Joueur(int score){
+    int score;
+    String nom;
+    private ArrayList paquet = new ArrayList();
+    
+            // ########## constructeur ##########
+
+    public Joueur(int score, String nom) {
         this.score = score;
+        this.nom = nom;
+    }    
+    
+            // ########## méthode ########## 
+    
+    public String Gagnant(Joueur j1, Joueur j2) {
+        if (j1.score > j2.score) {
+            return j1.nom;
+        }
+        else if (j1.score < j2.score) {
+            return j2.nom;
+        }
+        else {
+            return "Egalite entre les deux joueurs";
+        }
     }
     
-    public void AjoutScore(int score){
-        this.score+=score;
+    public String toString() {
+        return this.nom;
     }
     
-    public void AjoutCarte(String carte){
-        joueur_deck.add(carte);
+    public String VoirPaquet(ArrayList Tas) {
+        String str = "";
+        for (int i=0; i<Tas.size();i++) {
+            str = str + Tas.get(i)+"\n";
+        }
+        return str;
     }
     
+    public Carte Pioche(int i) {
+        Carte carte;
+        carte = (Carte) this.getPaquet().get(i);
+        return carte;
+    }
+    
+    // ########## mutateur (optionnel) ##########
+
+    public void setPaquet(ArrayList paquet) {
+        this.paquet = paquet;
+    }
+    
+    // ########## accesseurs (optionnel) ##########
+    
+    public ArrayList getPaquet() {
+        return paquet;
+    }
 
     
-    public void VoirCarte(int numero){
-            System.out.println(joueur_deck.get(numero));
-    }
-    
-    public int VoirCarteValeur(int numero){
-        String valor = joueur_deck.get(numero).toString().substring(0, 2);
-        return  Integer.parseInt(valor);
-    }
-    public String VoirCarteColor(int numero){
-        String color = joueur_deck.get(numero).toString().substring(3, 4);
-        return  color;
-    }
-
-    public int Score(){
-        return score;
-    }
-    public String toString(){
-        return "score = " + score;
-    }
 }
