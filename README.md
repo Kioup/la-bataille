@@ -13,6 +13,8 @@ Elles contient aussi les méthodes lié au paquet de carte des deux joueurs
 #### Une classe Paquet
 classe qui contient le paquet de carte - un tableau d'objet (ArrayList) composé d'objets Carte
 
+Ce qui concerne le déroulement du jeu se situe dans la classe main et fait appel à toutes les classes énoncés ci dessus.
+
 ### Initialisation - Choix du mode de jeu ###
 (1) Jouer contre l'ordinateur 
 Dans ce cas le joueur 2 s'appelera Ordinateur et aura comme seule et unique option de tirer la carte suivante
@@ -30,7 +32,7 @@ le gagnant est celui dont la valeur de la carte est la plus elevée
 +1 point pour les deux joueurs en cas d'égalité
 Méthode Compare
 
-### Fin de partie (après 24 Manche) - Score J1 contre Score J2
+### Fin de partie (après 26 Manches) - Score J1 contre Score J2
 La gagnant est celui dont le Score est le plus elevée
 Puiqu'il y a 52 cartes, la somme des scores des deux joueurs doit être égales 26.
 Méthod Gagant
