@@ -19,7 +19,7 @@ public class LectureConsole implements LecturePseudo {
         return pseudo;
     }*/
     public ArrayList<String> lirePseudo() {
-        System.out.println("Joueur 1 - Veuillez entrer votre pseudo : ");
+        System.out.println("############## Joueur 1 - Veuillez entrer votre pseudo : ##############");
         Scanner lc = new Scanner(System.in);
         ArrayList AL = new ArrayList<String>();
         String pseudo = lc.nextLine();

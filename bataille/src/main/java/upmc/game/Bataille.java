@@ -60,7 +60,7 @@ public class Bataille
           
           if (pseudos.isEmpty()){
               Scanner joi = new Scanner(System.in);
-              System.out.println("Joueur2 - Veuillez entrer votre nom : ");
+              System.out.println("############## Joueur2 - Veuillez entrer votre nom : ##############");
               name2 = joi.nextLine();
               mode2J = true;
           }

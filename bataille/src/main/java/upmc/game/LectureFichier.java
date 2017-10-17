@@ -22,7 +22,9 @@ public class LectureFichier implements LecturePseudo {
         
         FileReader monFichier = null;
         BufferedReader tampon = null;
-        System.out.println("Indiquer le nom du fichier sans l'extension : ");
+        System.out.println("############### Indiquer le nom du fichier sans l'extension : ##############");
+        System.out.println("Au cas ou vous ne souhaitez pas en créer un, il existe un fichier pseudo.txt qui contient des pseudonymes par defaut");
+        System.out.println("############## Pour l'utiliser, indiquer juste \"pseudo\" dans la console. ##############");
         Scanner kl = new Scanner(System.in);
         File test = new File("test.txt");
         String path = test.getAbsolutePath().replace("test.txt","");
@@ -64,7 +66,7 @@ public class LectureFichier implements LecturePseudo {
                     }
                 else {
                     System.out.println("Le nom du fichier spécifié est incorrect ou n'existe pas !");
-                    System.out.println("Veuillez réessayer");
+                    System.out.println("############## Veuillez réessayer ##############");
                     NomFic = path+"..\\"+kl.nextLine() + ".txt";
                 } 
         }

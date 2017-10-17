@@ -20,11 +20,11 @@ public class MenuPseudo {
         LecturePseudo test = null;
         if (descision.equals("1")){
                         test = new LectureConsole();
-                        System.out.println("Vous avez choisi de lire les pseudo via la console. \n Dans ce cas vous devrez les insérer manuellement.");
+                        System.out.println("Vous avez choisi de lire les pseudo via la console. \n Dans ce cas vous devrez les insérer manuellement. \n ");
         }
         else if (descision.equals("2")){
                         test = new LectureFichier();
-                        System.out.println("Vous avez choisi de lire les pseudo via un fichier texte. \n Dans ce cas vous devrez rentrer le nom d'un fichier texte en .txt existant. \n Il n'est pas nécéssaire de rentrer l'extension.");
+                        System.out.println("Vous avez choisi de lire les pseudo via un fichier texte. \n Dans ce cas vous devrez rentrer le nom d'un fichier texte en .txt existant. \n Il n'est pas nécéssaire de rentrer l'extension.\n");
         }
         else if (descision.equals("3")){
             System.exit(0);
