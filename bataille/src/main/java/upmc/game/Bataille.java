@@ -21,18 +21,32 @@ public class Bataille
 {
   public static void main(String[] args)
   { 
+      
       System.out.println("##################################################################");
       System.out.println("############ Bienvenu dans le jeu de la bataille ! ###############");
       System.out.println("##################################################################"+"\n");
       
       System.out.println("##### Choisissez un mode de jeu #####");
-      System.out.println("(1) jouer contre l\'ordinateur || (2) Jouer contre un partenaire");
+      System.out.println("(1) jouer contre l\'ordinateur || (2) Jouer contre un partenaire || (3) Arréter la partie en cour");
       Scanner md = new Scanner(System.in);
       String choix = md.nextLine();
       
-      Scanner jou = new Scanner(System.in);
-      System.out.println("Joueur 1 - Veuillez entrer votre nom : ");
-      String name = jou.nextLine();
+      if (choix.equals("3")){
+          System.exit(0);
+      }
+      
+      // Implementation des méthodes du TP2
+      MenuPseudo lecture = new MenuPseudo();
+      LecturePseudo lecturepseudo = lecture.ModeLecturePseudo();
+      ArrayList<String> pseudos = lecturepseudo.lirePseudo();
+      //
+      
+      //Scanner jou = new Scanner(System.in);
+      //System.out.println("Joueur 1 - Veuillez entrer votre nom : ");
+      //String name = jou.nextLine();
+      
+      String name = pseudos.get(0);
+      pseudos.remove(0);
       String name2;
       boolean mode2J = false;
       Joueur j1 = new Joueur(0, name);
@@ -43,10 +57,17 @@ public class Bataille
       }
       
       else if (choix.equals("2")) {
-          Scanner joi = new Scanner(System.in);
-          System.out.println("Joueur2 - Veuillez entrer votre nom : ");
-          name2 = joi.nextLine();
-          mode2J = true;
+          
+          if (pseudos.isEmpty()){
+              Scanner joi = new Scanner(System.in);
+              System.out.println("Joueur2 - Veuillez entrer votre nom : ");
+              name2 = joi.nextLine();
+              mode2J = true;
+          }
+          else {
+              name2 = pseudos.get(0);   
+              pseudos.remove(0);
+          }
       }
       else {
           name2 = null;
@@ -76,9 +97,10 @@ public class Bataille
             Carte carteJ1 = null;
             Carte carteJ2 = null;
             
+            // piochez une carte choisi
             if (menu.equals("1")){
                 carteJ1 = j1.Pioche(z);
-                System.out.println("Vous avez tirez : ["+carteJ1+"]");
+                System.out.println(j1.nom+" Vous avez tirez : ["+carteJ1+"]");
                 
                 // mode 2 joueurs
                 if (mode2J == true && menu.equals("1")) {
@@ -107,7 +129,7 @@ public class Bataille
                     }
                 }
                 carteJ2 = j2.Pioche(z);
-                System.out.println("Vous avez tirez : ["+carteJ2+"]");
+                System.out.println(j2.nom+" Vous avez tirez : ["+carteJ2+"]");
             
                 if (carteJ1.compare(carteJ2) == carteJ1) {
                     System.out.println(j1.nom+" remporte la mache");
@@ -141,10 +163,10 @@ public class Bataille
             }
       }
       System.out.println("########## Fin de la partie #########");
-        System.out.println("##########################################################");
-        System.out.println("########## "+j1.nom+" "+j1.score+" ##########");
-        System.out.println("########## "+j2.nom+" "+j2.score+" ##########");
-        System.out.println("##########################################################");      
+      System.out.println("##########################################################");
+      System.out.println("########## "+j1.nom+" "+j1.score+" ##########");
+      System.out.println("########## "+j2.nom+" "+j2.score+" ##########");
+      System.out.println("##########################################################");      
       System.out.println("########## Le gagnant est : #########");
       System.out.println("########## "+j1.Gagnant(j1, j2)+"#########");
       
