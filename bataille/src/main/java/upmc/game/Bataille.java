@@ -1,16 +1,3 @@
-// Copyright 2017 Pierre Talbot (IRCAM)
-
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-
-//     http://www.apache.org/licenses/LICENSE-2.0
-
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
 
 package upmc.game;
 
@@ -22,14 +9,10 @@ public class Bataille
   public static void main(String[] args)
   { 
       
-      System.out.println("##################################################################");
-      System.out.println("############ Bienvenu dans le jeu de la bataille ! ###############");
-      System.out.println("##################################################################"+"\n");
+      Message msg = new Message();
+      msg.msgBienvenue();
       
-      System.out.println("##### Choisissez un mode de jeu #####");
-      System.out.println("(1) jouer contre l\'ordinateur || (2) Jouer contre un partenaire || (3) Arréter la partie en cour");
-      Scanner md = new Scanner(System.in);
-      String choix = md.nextLine();
+      String choix = msg.choixMenu();
       
       if (choix.equals("3")){
           System.exit(0);
