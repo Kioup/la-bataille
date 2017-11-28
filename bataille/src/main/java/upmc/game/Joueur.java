@@ -1,4 +1,3 @@
-
 package upmc.game;
 
 import java.util.*;
@@ -30,6 +29,13 @@ public class Joueur {
         else {
             return "Egalite entre les deux joueurs";
         }
+    }
+    
+    public void tableauScore(Joueur j1, Joueur j2){
+        System.out.println("##########################################################");
+        System.out.println("########## "+j1.nom+" "+j1.score+" ##########");
+        System.out.println("########## "+j2.nom+" "+j2.score+" ##########");
+        System.out.println("##########################################################");
     }
     
     public String toString() {

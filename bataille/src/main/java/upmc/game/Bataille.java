@@ -22,11 +22,6 @@ public class Bataille
       MenuPseudo lecture = new MenuPseudo();
       LecturePseudo lecturepseudo = lecture.ModeLecturePseudo();
       ArrayList<String> pseudos = lecturepseudo.lirePseudo();
-      //
-      
-      //Scanner jou = new Scanner(System.in);
-      //System.out.println("Joueur 1 - Veuillez entrer votre nom : ");
-      //String name = jou.nextLine();
       
       String name = pseudos.get(0);
       pseudos.remove(0);
@@ -73,10 +68,7 @@ public class Bataille
           
           // affichage du menu
           
-            System.out.println("##### "+j1.nom+" Choisissez une action #####");
-            System.out.println("(1) Piocher une carte | (2) Afficher le Score | (3) Quitter");
-            Scanner tl = new Scanner(System.in);
-            menu = tl.nextLine();
+            menu = Message.choixMenu2(j1.nom);
             Carte carteJ1 = null;
             Carte carteJ2 = null;
             
@@ -87,28 +79,16 @@ public class Bataille
                 
                 // mode 2 joueurs
                 if (mode2J == true && menu.equals("1")) {
-                    System.out.println("##### "+j2.nom+" Choisissez une action #####");
-                    System.out.println("(1) Piocher une carte | (2) Afficher le Score | (3) Quitter");
-                    Scanner tm = new Scanner(System.in);
-                    menu = tm.nextLine();
+                    menu = Message.choixMenu2(j2.nom);
                     
                     if (menu.equals("1")) {
                         
                     }
-                    
                     else if (menu.equals("2")) {
-                        System.out.println("##########################################################");
-                        System.out.println("########## "+j1.nom+" "+j1.score+" ##########");
-                        System.out.println("########## "+j2.nom+" "+j2.score+" ##########");
-                        System.out.println("##########################################################");
+                        j1.tableauScore(j1, j2);
                     }
                     else if (menu.equals("3")) {
-                        System.out.println("########## Fin de la partie #########");
-                        System.exit(0);
-                    }
-                    else {
-                        System.out.println(" ########## Vous n'avez pas entré le bon numero ##########");
-                        System.out.println("########## Veuillez réessayer ##########");
+                        Message.finPartie();
                     }
                 }
                 carteJ2 = j2.Pioche(z);
@@ -131,18 +111,10 @@ public class Bataille
                 j2.getPaquet().remove(z);
                 }
             else if (menu.equals("2")) {
-                System.out.println("##########################################################");
-                System.out.println("########## "+j1.nom+" "+j1.score+" ##########");
-                System.out.println("########## "+j2.nom+" "+j2.score+" ##########");
-                System.out.println("##########################################################");
+                j1.tableauScore(j1, j2);
             }
             else if (menu.equals("3")) {
-                System.out.println("########## Fin de la partie #########");
-                System.exit(0);
-            }
-            else {
-                System.out.println(" ########## Vous n'avez pas entré le bon numero ##########");
-                System.out.println("########## Veuillez réessayer ##########");
+                Message.finPartie();
             }
       }
       System.out.println("########## Fin de la partie #########");
