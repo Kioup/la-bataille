@@ -8,7 +8,7 @@ public class MenuPseudo {
         
         Scanner gt = new Scanner(System.in);
         System.out.println("Voulez vous lire les pseudo via la console ou via un fichier texte ?");
-         System.out.println("(1) via la console || (2) via un fichier .txt choisi || (3) quitter la partie");
+        System.out.println("(1) via la console || (2) via un fichier .txt choisi || (3) quitter la partie");
         String descision = gt.nextLine();
         LecturePseudo test = null;
         if (descision.equals("1")){
@@ -22,8 +22,10 @@ public class MenuPseudo {
         else if (descision.equals("3")){
             System.exit(0);
         }
-        else 
-                    System.out.println("Vous n'avez pas entrez de réponse valide \n Veuillez réessayer");
+        else {
+           System.out.println("Vous n'avez pas entrez de réponse valide \n Veuillez réessayer");      
+        }
+        
         return test;
     }
     

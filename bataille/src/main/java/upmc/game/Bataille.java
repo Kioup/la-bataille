@@ -1,4 +1,3 @@
-
 package upmc.game;
 
 import java.util.Scanner;
@@ -117,13 +116,6 @@ public class Bataille
                 Message.finPartie();
             }
       }
-      System.out.println("########## Fin de la partie #########");
-      System.out.println("##########################################################");
-      System.out.println("########## "+j1.nom+" "+j1.score+" ##########");
-      System.out.println("########## "+j2.nom+" "+j2.score+" ##########");
-      System.out.println("##########################################################");      
-      System.out.println("########## Le gagnant est : #########");
-      System.out.println("########## "+j1.Gagnant(j1, j2)+"#########");
-      
+      msg.finPartie(j1, j2);
   }
 }
