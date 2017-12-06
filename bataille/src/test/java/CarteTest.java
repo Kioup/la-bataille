@@ -38,14 +38,14 @@ public class CarteTest {
     public void testCompare(){    
         Carte carte1 = new Carte(2, "pique");
         Carte carte2 = new Carte(3, "trefle");
-        if (carte2.valeur > carte1.valeur){
+        if (carte2.getValeur() > carte1.getValeur()){
             System.out.println("c'est bon la carte gagnante est");
         }
-        else if (carte1.valeur > carte2.valeur){
-            fail();
+        else if (carte1.getValeur() > carte2.getValeur()){
+            fail("La gestion des valeur est déffectueuse");
         }
         else {
-            fail();
+            fail("les deux valeurs sont égales");
         }
         
     }

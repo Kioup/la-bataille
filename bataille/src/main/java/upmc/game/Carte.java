@@ -41,6 +41,22 @@ public class Carte{
     
     // ########## accesseurs (optionnel) ##########
     
+    public int getValeur(){
+        return this.valeur;
+    }
+    
+    public String getCouleur(){
+        return this.couleur;
+    }
+    
     // ########## mutateur (optionnel) ##########
+ 
+    public void setValeur(int valeur){
+        this.valeur = valeur;
+    }
+    
+    public void setCouleur(String couleur){
+        this.couleur = couleur;
+    }
     
 }

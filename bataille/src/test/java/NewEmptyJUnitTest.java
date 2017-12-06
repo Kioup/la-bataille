@@ -1,17 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 import java.util.ArrayList;
 import junit.framework.TestCase;
 import org.junit.Test;
 
-/**
- *
- * @author licence
- */
 public class NewEmptyJUnitTest extends TestCase {
     
     public NewEmptyJUnitTest(String testName) {
@@ -30,7 +21,8 @@ public class NewEmptyJUnitTest extends TestCase {
     
     @Test
     public ArrayList<String> lirepseudo() {
-        
+        ArrayList pseudo = new ArrayList();
+        return pseudo;
     }
 
     // TODO add test methods here. The name must begin with 'test'. For example:
